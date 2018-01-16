@@ -36,7 +36,7 @@ func (t *Arith) Run(data string, result *string) error {
 	usex.Action = args[2]
 	info := strings.Split(args[1], "[+]")
 	usex.UserID = info[0]
-	usex.ShopID = info[1]
+	ShopID := info[1]
 	usex.Params = ""
 	if len(args) > 3 {
 		usex.Params = args[3]
@@ -48,7 +48,7 @@ func (t *Arith) Run(data string, result *string) error {
 		if shopid == "" {
 			*result = c3mcommon.ReturnJsonMessage("0", "shop not found", "", "")
 		} else {
-			rpch.LoadShopById(usex.Session, usex.UserID, usex.ShopID)
+			rpch.LoadShopById(usex.Session, usex.UserID, ShopID)
 			*result = c3mcommon.ReturnJsonMessage("1", "", "shop found", "")
 		}
 	} else if usex.Action == "submitorder" {
