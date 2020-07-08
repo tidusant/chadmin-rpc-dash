@@ -3,11 +3,10 @@ package main
 import (
 	"flag"
 	"fmt"
-	"net"
-
 	"github.com/tidusant/c3m-common/c3mcommon"
 	"github.com/tidusant/c3m-common/log"
 	"github.com/tidusant/chadmin-repo/models"
+	"net"
 
 	"net/rpc"
 	"strconv"
@@ -22,9 +21,9 @@ const (
 
 type Arith int
 
-func (t *Arith) Run(data string, result *string) error {
+func (t *Arith) Run(data string, result *models.RequestResult) error {
 	log.Debugf("Call RPCdash args:" + data)
-	*result = ""
+	*result = models.RequestResult{}
 	//parse args
 	args := strings.Split(data, "|")
 
@@ -53,8 +52,6 @@ func (t *Arith) Run(data string, result *string) error {
 		}
 	} else if usex.Action == "submitorder" {
 		//*result = submitorder(siteid, mongoSession, data2)
-	} else { //default
-		*result = ""
 	}
 
 	return nil
